@@ -6,7 +6,7 @@ clc;
 addpath("functions/part1")
 addpath("functions/part2")
 addpath("evaluation_functions")
-addpath("evaluation_functions/part2")
+% addpath("evaluation_functions/part2") % comment for warning
 addpath("plot_functions")
 
 % Load 2D Testing Dataset for PCA

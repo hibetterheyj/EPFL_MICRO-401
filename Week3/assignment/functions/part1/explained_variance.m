@@ -16,7 +16,7 @@ function [ExpVar, CumVar, p_opt] = explained_variance(EigenValues, var_threshold
 ExpVar = EigenValues/sum(EigenValues);
 CumVar = cumsum(ExpVar);
 % p_opt = min(find(CumVar>var_threshold));
-p_opt = find(CumVar>var_threshold,1);
+p_opt = find(CumVar>var_threshold,1);                   
 
 end
 
