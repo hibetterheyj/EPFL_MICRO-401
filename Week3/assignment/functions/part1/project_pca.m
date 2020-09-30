@@ -15,6 +15,8 @@ function [Y, Ap] = project_pca(X, Mu, V, p)
 %       o Y        : (p x M), Projected data set with N samples each being of dimension k.
 %       o A_p      : (p x N), Projection Matrix.
 
+Ap = V(:,1:p).'; % using column instead of row value
+Y = Ap * (X-Mu);
 
 end
 

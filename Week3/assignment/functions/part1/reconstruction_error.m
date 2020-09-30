@@ -12,6 +12,7 @@ function [err] = reconstruction_error(X, Xhat)
 %
 %       o e_rec  :  reconstruction error
 
+err = norm(X-Xhat);
 
 end
 

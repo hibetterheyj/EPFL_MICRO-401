@@ -13,6 +13,7 @@ function [Xhat] = reconstruct_pca(Y, Ap, Mu)
 %
 %       o X_hat  : (N x M), reconstructed data set with M samples each being of dimension N.
 
+Xhat = Ap' * Y + Mu;
 
 end
 
