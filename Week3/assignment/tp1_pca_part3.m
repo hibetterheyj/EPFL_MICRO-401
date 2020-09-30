@@ -7,7 +7,7 @@ addpath("functions/part1")
 addpath("functions/part3")
 addpath("evaluation_functions")
 addpath("evaluation_functions/part1")
-addpath("evaluation_functions/part3")
+% addpath("evaluation_functions/part3") % comment for warning
 addpath("plot_functions")
 
 % data loading
@@ -30,7 +30,7 @@ var_threshold = 0.95;
 % PCA projection
 p = 1;
 [Yproj, Ap] = solution_project_pca(X, Mu, EigenVectors, p);
-XHat = solution_reconstruct_pca(Yproj, Ap, Mu, 2);
+XHat = solution_reconstruct_pca(Yproj, Ap, Mu);
 
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
