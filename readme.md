@@ -20,6 +20,12 @@ This programming class complements courses on machine learning given in the scho
 
 🛠 To be updated
 
+- Exercise0: not graded
+
+- Assignment 1: Principal Component Analysis
+
+  due on **October 13, 2020 @ 6pm**
+
 Weekly solution and codes are available in `*.mlx` and `.m`. Best wishes!
 
 ### Slides & Videos
