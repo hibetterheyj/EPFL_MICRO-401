@@ -6,6 +6,9 @@
 # Last edited time: 20200125
 #######################################
 
+# Windows shortcuts
+*.lnk
+
 ## frequent use
 # Windows 默认自动保存文件
 # Windows default autosave extension

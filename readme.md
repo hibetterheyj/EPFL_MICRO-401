@@ -1,4 +1,4 @@
-## EPFL Course Repo for MICRO-401 Applied Machine Learning
+## EPFL Course Repo for MICRO-401 Machine Learning Programming
 
 > Supervised by [Prof. Aude Billard](https://people.epfl.ch/aude.billard)
 
@@ -16,14 +16,16 @@ This programming class complements courses on machine learning given in the scho
 
 ### Exercises
 
-> Last updated on 17.09.2020
+> Last updated on 05.10.2020
 
-🛠 To be updated
+- Week1
 
-- Exercise0: not graded
+  Exercise0: not graded
 
-- Assignment 1: Principal Component Analysis
+- Week2-Week3 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week3)]
 
+  Assignment 1: Principal Component Analysis
+  
   due on **October 13, 2020 @ 6pm**
 
 Weekly solution and codes are available in `*.mlx` and `.m`. Best wishes!
