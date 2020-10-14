@@ -22,13 +22,19 @@ This programming class complements courses on machine learning given in the scho
 
   Exercise0: not graded
 
-- Week2-Week3 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week3)]
+- Week2-Week3 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week3_4)]
 
   Assignment 1: Principal Component Analysis
   
-  due on **October 13, 2020 @ 6pm**
+  (Due: **October 13, 2020 @ 6pm**)
+  
+- Week5-6
 
-Weekly solution and codes are available in `*.mlx` and `.m`. Best wishes!
+  Assignment 2: k-Means
+
+  (Due: O**ctober 27, 2020 @ 6pm**)
+
+Weekly solution and codes are available in`.m` format. Best wishes!
 
 ### Slides & Videos
 
@@ -38,8 +44,8 @@ Weekly solution and codes are available in `*.mlx` and `.m`. Best wishes!
 
 #### Links
 
-🛠 To be updated
+- [EPFL LASA APPLIED MACHINE LEARNING](http://lasa.epfl.ch/teaching/lectures/ML_Msc/index.php)
 
 #### Literature
 
-🛠 To be updated
+- [Lecture notes](http://lasa.epfl.ch/teaching/lectures/ML_Msc/Lecture_Notes/ML_Lecture_Notes_v2016-AML.pdf) from MICRO-455 Applied Machine Learning [[website](http://lasa.epfl.ch/teaching/lectures/ML_Msc/index.php)]
