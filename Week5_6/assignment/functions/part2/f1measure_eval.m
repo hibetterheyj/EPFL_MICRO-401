@@ -18,10 +18,19 @@ function [F1_curve] =  f1measure_eval(X, K_range, repeats, init, type, MaxIter, 
 %       o F1_curve   : (1 X K_range), F1 values for each value of K in K_range
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% initialization
+F1_curve = zeros(size(K_range));
 
-
-
-
-
+% repetitive evaluations
+for j = 1:size(K_range,2)
+    for i = 1: repeats
+        [cluster_labels, ~, ~] =  kmeans(X, K_range(j), init, type, MaxIter, []);
+        [F1_overall, ~, ~, ~] =  f1measure(cluster_labels, true_labels);
+        F1_curve(j) = F1_curve(j) + F1_overall;
+        if i == repeats
+            F1_curve(j) = F1_curve(j)/repeats;
+        end
+    end
+end
 
 end

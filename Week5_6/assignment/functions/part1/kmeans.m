@@ -41,7 +41,6 @@ labels = zeros(1,N);
 %% INSERT CODE HERE
 % Centroid μk Initialization
 [Mu_init] =  kmeans_init(X, K, init);
-[d] = distance_to_centroids(X, Mu_init, type);
 
 %% TEMPLATE CODE (DO NOT MODIFY)
 % Visualize Initial Centroids if N=2 and plot_iter active
@@ -53,41 +52,49 @@ if (D==2 && plot_iter)
 end
 
 
-%% INSERT CODE HERE & bug很大！！！
-
-% init label
-% 初步计算每一列最大值所在index即为class值，然后需要assign到对应centroid
-% labels = zeros(1,N);
-% [~,labels]=max(d);
-% 导出responsibility矩阵，根据class生成res矩阵，与d同样大小
-resMap = zeros(size(d));
-[resMap, labels] = updateLabel(d);
+%% INSERT CODE HERE 
 has_converged = false;
 tol_iter = 0; iter = 0;
-Mu_previous = Mu_init;
+clusterPoints = zeros(K,1);
 
 while ~has_converged
-    iter = iter + 1;
-    if iter>=2
-        [d] = distance_to_centroids(X, Mu, type);
-        [resMap, labels] = updateLabel(d);
+    while true
+    % d_i: distance matrix in i-th iterations
+    if iter == 0
+        Mu_previous = Mu_init;
     end
-    disp("iter-"+num2str(iter)+": ");
-    clusterPoints = sum(resMap,2)
+    d_i = distance_to_centroids(X, Mu_previous, type);
+    % k_i: updated labels
+    [~,k_i] = min(d_i,[],1); % if k_has one dim, then min will degraded
+    [kMat,resMat] = ndgrid(1:K,k_i);
+    % r_i: responsibility map
+    r_i = (kMat == resMat);
+    clusterPoints = sum(r_i,2);
+    if all(clusterPoints)
+        break;
+    else
+        Mu_init = kmeans_init(X, K, init);
+        iter = 0;
+    end
+    end
+%     disp("iter-"+num2str(iter)+": ");
+%     disp(clusterPoints);
     
-    for i = 1:K
-        idx = find(labels==i);
+    for j = 1:K
+        idx = find(r_i(j,:)==1);
         num = sum(X(:,idx),2);
-        den = clusterPoints(i);
-        Mu(:,i) = num/den;
+        den = clusterPoints(j);
+        Mu(:,j) = num/den;
     end
     
     [has_converged, tol_iter] = check_convergence(Mu, Mu_previous, iter, ...
         tol_iter, MaxIter, MaxTolIter, tolerance);
     
     Mu_previous = Mu;
-    
+    iter = iter + 1;
 end
+
+labels = k_i;
 
 %% TEMPLATE CODE (DO NOT MODIFY)
 if (D==2 && plot_iter)
@@ -97,31 +104,5 @@ if (D==2 && plot_iter)
     ml_plot_data(X',options); hold on;
     ml_plot_centroids(Mu',colors);
 end
-
-
-end
-
-function [resMap, labels] = updateLabel(d)
-    checkTie = {};
-    for i = 1:size(d,2)
-        sampleDis = d(:,i);
-        minIndex = (sampleDis==min(sampleDis));
-        resMap(:,i)=minIndex;
-        if sum(minIndex) > 1
-            checkTie{end+1} = i;
-        end
-    end
-    if ~isempty(checkTie)
-        %disp("need to modify")
-        clusterPoints = sum(resMap,2);
-        for i = 1:numel(checkTie)
-            col = checkTie{i};
-            currSample = resMap(:,col);
-            idx = find(currSample==max(currSample));
-            resMap(:,col) = (clusterPoints == min(clusterPoints(idx)));
-        end
-    end
-    labels = cell2mat(arrayfun(@(i) find(resMap(:,i)==1), 1:size(resMap,2), ...
-        'UniformOutput', false));
 
 end
