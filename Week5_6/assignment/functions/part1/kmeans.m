@@ -37,7 +37,6 @@ MaxTolIter = 10;
 Mu     = zeros(D, K);
 labels = zeros(1,N);
 
-
 %% INSERT CODE HERE
 % Centroid ¦Ìk Initialization
 [Mu_init] =  kmeans_init(X, K, init);
@@ -81,7 +80,7 @@ while ~has_converged
 %     disp(clusterPoints);
     
     for j = 1:K
-        idx = find(r_i(j,:)==1);
+        idx = r_i(j,:)==1;
         num = sum(X(:,idx),2);
         den = clusterPoints(j);
         Mu(:,j) = num/den;

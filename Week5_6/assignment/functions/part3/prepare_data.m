@@ -19,10 +19,20 @@ function [X, unique_cards] = prepare_data(data)
 %
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% init
+unique_cards = unique(data);
+M = size(data,2); % number of decks
+N = numel(unique_cards); % number of different cards
+X = zeros(N, M); % matrix representation of the frequency of cards
 
-
-
-
+for ii = 1:M
+    currdeck = data(:,ii);
+    freMap = tabulate(currdeck);
+    for jj = 1:size(freMap, 1)
+        idx = ismember(unique_cards,freMap{jj,1})==1;
+        X(idx, ii) = freMap{jj,2};
+    end
+end
 
 end
 

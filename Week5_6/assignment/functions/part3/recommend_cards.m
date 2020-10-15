@@ -14,9 +14,16 @@ function [cards] = recommend_cards(deck, Mu, type)
 %
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% get the closest cluster k
+[dist] = deck_distance(deck, Mu, type);
+[~, closest] = min(dist);
 
-
-
+% extract all the ids of the cards where  ¦Ìk¡Ù0  
+% and sort them in descending values of  ¦Ìk.
+centerMu = Mu(:,closest);
+% sortMu = sort(centerMu,'descend');
+[B, I] = sort(centerMu, 'descend');
+cards = I(B>0);
 
 end
 

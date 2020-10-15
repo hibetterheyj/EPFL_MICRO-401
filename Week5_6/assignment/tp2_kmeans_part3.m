@@ -38,7 +38,14 @@ K = 8; init='sample'; type='L2'; MaxIter = 1000; plot_iter = 0;
 deck = zeros(length(unique_cards),1);
 % try to add different cards
 deck(612) = 1;
-deck(36) = 4;
+% deck(36) = 4;
+% YujieCode/Comment below
+deck(48) = 2;
+% disp(unique_cards{612});
+% Voice of Resurgence
+% disp(unique_cards{48});
+% Blood Artist
+% YujieCode/Comment up
 
 % add cards until the deck contains 60 cards
 while sum(deck) < 60
