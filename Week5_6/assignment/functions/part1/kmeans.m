@@ -24,7 +24,7 @@ function [labels, Mu, Mu_init, iter] =  kmeans(X,K,init,type,MaxIter,plot_iter)
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% TEMPLATE CODE (DO NOT MODIFY)
-% Auxiliary Variable
+% Auxiliary Variables
 [D, N] = size(X);
 d_i    = zeros(K,N);
 k_i    = zeros(1,N);
@@ -51,30 +51,30 @@ if (D==2 && plot_iter)
 end
 
 
-%% INSERT CODE HERE 
+%% INSERT CODE HERE
 has_converged = false;
 tol_iter = 0; iter = 0;
 clusterPoints = zeros(K,1);
 
 while ~has_converged
     while true
-    % d_i: distance matrix in i-th iterations
-    if iter == 0
-        Mu_previous = Mu_init;
-    end
-    d_i = distance_to_centroids(X, Mu_previous, type);
-    % k_i: updated labels
-    [~,k_i] = min(d_i,[],1); % if k_has one dim, then min will degraded
-    [kMat,resMat] = ndgrid(1:K,k_i);
-    % r_i: responsibility map
-    r_i = (kMat == resMat);
-    clusterPoints = sum(r_i,2);
-    if all(clusterPoints)
-        break;
-    else
-        Mu_init = kmeans_init(X, K, init);
-        iter = 0;
-    end
+        % d_i: distance matrix in i-th iterations
+        if iter == 0
+            Mu_previous = Mu_init;
+        end
+        d_i = distance_to_centroids(X, Mu_previous, type);
+        % k_i: updated labels
+        [~,k_i] = min(d_i,[],1); % if k_has one dim, then min will degraded
+        [kMat,resMat] = ndgrid(1:K,k_i);
+        % r_i: responsibility map
+        r_i = (kMat == resMat);
+        clusterPoints = sum(r_i,2);
+        if all(clusterPoints)
+            break;
+        else
+            Mu_init = kmeans_init(X, K, init);
+            iter = 0;
+        end
     end
     
     for j = 1:K

@@ -18,12 +18,12 @@ function [RSS, AIC, BIC] =  compute_metrics(X, labels, Mu)
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 [N, M] = size(X);
-% labels
 [~, k] = size(Mu);
+
 % RSS
 RSS=0;
 for i = 1:k
-    idx = find(labels==i);
+    idx = labels==i;
     X_cluster = X(:,idx);
     mu = Mu(:,i);
     RSS = RSS + sum(cell2mat(arrayfun(@(i) (norm(X_cluster(:,i)-mu))^2, 1:size(X_cluster,2), ...

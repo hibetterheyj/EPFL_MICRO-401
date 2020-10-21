@@ -13,11 +13,6 @@ function [dist] = deck_distance(deck, Mu, type)
 %       o dist : K X 1 the distance to the k centroids
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% To be updated!
-% N = size(deck, 1); % 642
-% K = size(Mu, 2); % 8
-% dist = ones(K, 1);
-
 % distance with subset of the centroids
 % where the subset corresponds to non-zero cards
 % idx = find(deck>0);

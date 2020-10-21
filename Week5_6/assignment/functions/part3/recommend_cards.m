@@ -21,7 +21,7 @@ function [cards] = recommend_cards(deck, Mu, type)
 
 % sort them in descending values of ¦Ìk.
 centerMu = Mu(:,closest);
-% B is the score of each card, and I is corresponding card index
+% B: scores of each card; I: corresponding card index
 [B, I] = sort(centerMu, 'descend');
 % extract all the ids of the cards where  ¦Ìk¡Ù0  
 cards = I(B>0);

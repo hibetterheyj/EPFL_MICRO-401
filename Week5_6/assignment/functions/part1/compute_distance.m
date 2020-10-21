@@ -15,9 +15,9 @@ function [d] =  compute_distance(x_1, x_2, type)
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 switch type
-    case 'L1'  % Manhattan Distance
+    case 'L1'   % Manhattan Distance
         d = norm(x_1 - x_2, 1);
-    case 'L2' % Euclidean Distance               
+    case 'L2'   % Euclidean Distance               
         d = norm(x_1 - x_2, 2); 
     case 'LInf' % Infinity Norm      
         d = norm(x_1 - x_2, Inf);
