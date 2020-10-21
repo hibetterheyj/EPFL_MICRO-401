@@ -14,30 +14,15 @@ function [d] =  compute_distance(x_1, x_2, type)
 %                  type {'L1','L2','LInf'}
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-d = 0;
 switch type
     case 'L1'  % Manhattan Distance
         d = norm(x_1 - x_2, 1);
-        % or
-        % d = sum(abs(x_1-x_2));
-        
-    case 'L2' % Euclidean Distance        
-%         d = norm(x_1 - x_2, 2);        
-        % or        
-        d = sqrt( sum((x_1 - x_2).^2) ); 
-        % or
-        % diff = x_1 - x_2;
-        % d = sqrt(diff * diff');
-        
+    case 'L2' % Euclidean Distance               
+        d = norm(x_1 - x_2, 2); 
     case 'LInf' % Infinity Norm      
-%         d = norm(x_1 - x_2, Inf);        
-        % or
-        d = max(abs(x_1-x_2));
-    
+        d = norm(x_1 - x_2, Inf);
     otherwise
         warning('Unexpected distance type. No distance computed.')
 end
-
-
 
 end

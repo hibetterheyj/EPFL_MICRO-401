@@ -20,8 +20,10 @@ function [dist] = deck_distance(deck, Mu, type)
 
 % distance with subset of the centroids
 % where the subset corresponds to non-zero cards
-idx = find(deck>0);
-[dist] =  distance_to_centroids(deck(idx), Mu(idx), type);
+% idx = find(deck>0);
+deckAbove = deck(deck>0);
+MuAbove = Mu(deck>0,:);
+[dist] =  distance_to_centroids(deckAbove, MuAbove, type);
 
 end
 

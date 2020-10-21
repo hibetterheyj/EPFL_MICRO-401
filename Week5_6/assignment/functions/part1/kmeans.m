@@ -76,8 +76,6 @@ while ~has_converged
         iter = 0;
     end
     end
-%     disp("iter-"+num2str(iter)+": ");
-%     disp(clusterPoints);
     
     for j = 1:K
         idx = r_i(j,:)==1;

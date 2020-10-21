@@ -20,7 +20,7 @@ function [X, unique_cards] = prepare_data(data)
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % init
-unique_cards = unique(data);
+unique_cards = unique(data); 
 M = size(data,2); % number of decks
 N = numel(unique_cards); % number of different cards
 X = zeros(N, M); % matrix representation of the frequency of cards

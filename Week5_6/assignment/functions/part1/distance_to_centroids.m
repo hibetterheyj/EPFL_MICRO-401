@@ -14,35 +14,24 @@ function [d] =  distance_to_centroids(X, Mu, type)
 %       o d      : (k x M), distances between X and Mu
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% method1: using cellfun
-% [~, M] = size(X);
-% [~, k] = size(Mu);
-% dataCell = num2cell(X,1);
-% centerCell = num2cell(Mu,1);
-% d = zeros(k, M);
-% for i = 1:k
-%     currCenter = centerCell{i};
-%     switch type
-%         case 'L1'
-%             p = 1;
-%         case 'L2'
-%             p = 2;
-%         case 'LInf'
-%             p = 'inf';
-%     end
-%     % currDis = cellfun(@(dataCell) norm(dataCell-currCenter, p), dataCell, 'UniformOutput', false);
-%     currDis = cellfun(@(dataCell) compute_distance(dataCell, currCenter, p), dataCell, 'UniformOutput', false);
-%     d(i,:) = cell2mat(currDis);
-% end
-
-% method2: using arrayfun
+[~, M] = size(X);
+[~, k] = size(Mu);
+d = zeros(k, M);
 switch type
     case 'L1'
-        d = cell2mat(arrayfun(@(i) sum(abs(Mu(:,i)-X), 1), 1:size(Mu,2), 'UniformOutput', false)');
+        p = 'L1';
     case 'L2'
-        d = cell2mat(arrayfun(@(i) sqrt(sum((Mu(:,i)-X).^2, 1)), 1:size(Mu,2), 'UniformOutput', false)');
-    case "LInf"
-        d = cell2mat(arrayfun(@(i) max(abs(Mu(:,i)-X), [], 1), 1:size(Mu,2), 'UniformOutput', false)');
+        p = 'L2';
+    case 'LInf'
+        p = 'LInf';
+end
+for jj = 1:M
+    data = X(:,jj);
+    for ii = 1:k
+        currCenter = Mu(:,ii);
+        currDis = compute_distance(data, currCenter, p);
+        d(ii,jj) = currDis;
+    end
 end
 
 end
