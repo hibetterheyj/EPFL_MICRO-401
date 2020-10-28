@@ -73,10 +73,6 @@ params.d_type = 'L2';
 % Compute y_estimate from k-NN
 y_est =  knn(X_train, y_train, X_test, params);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-evaluate_accuracy( y_test, y_est );
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%           5) Visualize kNN Results and Accuracy            %%
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,7 +100,3 @@ params.k_range = [1:2:ceil(M_train/2)];
 acc_curve = knn_eval(X_train, y_train, X_test, y_test, params); 
 
 plot_accuracy(params.k_range,acc_curve)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-evaluate_knneval(X_train, y_train, X_test, y_test, params);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

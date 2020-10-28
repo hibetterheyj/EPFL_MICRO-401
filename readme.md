@@ -18,23 +18,29 @@ This programming class complements courses on machine learning given in the scho
 
 > Last updated on 05.10.2020
 
-- Week1
+- Week1-2
 
   Exercise0: not graded
 
-- Week2-Week3 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week3_4)]
+- Week3-4 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week3_4)]
 
   Assignment 1: Principal Component Analysis
   
   (Due: **October 13, 2020 @ 6pm**)
   
-- Week5-6
+- Week5-6 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week5_6)]
 
   Assignment 2: k-Means
 
   (Due: O**ctober 27, 2020 @ 6pm**)
+  
+- Week7 [[link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week7)]
 
-Weekly solution and codes are available in`.m` format. Best wishes!
+  Assignment 3: kNN
+
+  (Due: **November 03, 2020 @ 6pm**)
+
+Weekly solution and codes are available in`.m` format in `Upload/` folder. Best wishes!
 
 ### Slides & Videos
 

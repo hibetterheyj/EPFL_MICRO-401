@@ -17,11 +17,33 @@ function [ y_est ] =  knn(X_train,  y_train, X_test, params)
 %                   corresponding to X_test.
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% init
+M_test = size(X_test, 2);
+y_est = zeros(1, M_test);
+X_train_cell = num2cell(X_train, 1);
 
+% methodology
+for ii = 1:M_test
+    % Compute Pairwise Distances
+    d = cell2mat(cellfun(@(X_train) compute_distance(X_test(:,ii), X_train, params), ...
+        X_train_cell, 'UniformOutput', false));
 
+    % Step2: Extract k-Nearest Neighbors
+    [~,I] = sort(d);
+    y_hat = y_train(I(1:params.k));
 
-
-
-
+    % Step3: Majority Vote
+    table = tabulate(y_hat);
+    % if the number of two classes are equal => compare their index sum 
+    if table(1,3) == 50
+        if sum(find(y_hat==1)) < sum(find(y_hat==2))
+            y_est(ii) = 1;
+        else
+            y_est(ii) = 2;
+        end
+    else
+        y_est(ii) = table(table(:,3)>50,1);
+    end
+end
 
 end

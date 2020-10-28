@@ -20,11 +20,23 @@ function [avgTP, avgFP, stdTP, stdFP] =  cross_validation(X, y, F_fold, valid_ra
 %
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% init
+k_list = params.k_range;
+allTP = zeros(F_fold, length(k_list));
+allFP = zeros(F_fold, length(k_list));
 
+% methodology
+for ii = 1:F_fold
+    [X_train, y_train, X_test, y_test] = split_data(X, y, valid_ratio);
+    [TP_rate, FP_rate] = knn_ROC(X_train, y_train, X_test, y_test, params );
+    allTP(ii,:) = TP_rate;
+    allFP(ii,:) = FP_rate;
+end
 
-
-
-
-
+% output
+avgTP = mean(allTP);
+avgFP = mean(allFP);
+stdTP = std(allTP);
+stdFP = std(allFP);
 
 end

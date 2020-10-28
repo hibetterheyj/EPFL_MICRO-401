@@ -14,10 +14,15 @@ function [C] =  confusion_matrix(y_test, y_est)
 %        
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% 1:positive; 2:negative
+TP = sum((y_test==1).*(y_est==1));
+TN = sum((y_test==2).*(y_est==2));
+FP = sum((y_test==2).*(y_est==1));
+FN = sum((y_test==1).*(y_est==2));
 
-
-
-
+% output
+C = [TP,FN;
+     FP,TN];
 
 end
 

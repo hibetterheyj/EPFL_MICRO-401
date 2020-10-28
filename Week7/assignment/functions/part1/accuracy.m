@@ -10,6 +10,6 @@ function [acc] =  accuracy(y_test, y_est)
 %       o acc     : classifier accuracy
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+acc = sum(y_test==y_est)/size(y_test,2);
 
 end
