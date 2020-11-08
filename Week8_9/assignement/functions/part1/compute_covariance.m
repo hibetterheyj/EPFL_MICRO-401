@@ -12,8 +12,20 @@ function [ Sigma ] = compute_covariance( X, X_bar, type )
 %                          Gaussian function
 %%
 
+% constant
+[N, M] = size(X);
 
-
+switch type
+    case 'full'
+        X = X - X_bar;
+        Sigma = 1/(M-1) * X * X';
+    case 'diag'
+        X = X - X_bar;
+        Sigma = eye(N) .* (1/(M-1) * X * X');
+    case 'iso'
+        Sigma_iso = 1/(N*M) * sum(sum((X - X_bar).^2));
+        Sigma = eye(N) * Sigma_iso;
+end
 
 end
 

@@ -14,8 +14,18 @@ function [Pk_x] = expectation_step(X, Priors, Mu, Sigma, params)
 %                     for generating a point m in the dataset 
 %%
 
+% constans & init
+K = numel(Priors);
+[~, M] = size(X);
+prob_prior = zeros(K, M);
 
+% compute prob with prior
+for ii = 1:K
+    prob = gaussPDF(X, Mu(:,ii), Sigma(:,:,ii)); % output 1xM
+    prob_prior(ii,:) = Priors(ii) * prob;
+end
 
-
+% normalize across k centroid axis
+Pk_x = bsxfun(@rdivide, prob_prior, sum(prob_prior));;
 end
 

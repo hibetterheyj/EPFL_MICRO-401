@@ -22,9 +22,19 @@ function [ Priors0, Mu0, Sigma0, labels0 ] = gmmInit(X, params)
 %       o labels0   : (1 x M), a vector of labels \in {1,...,k} 
 %                           corresponding to the k-th Gaussian component
 
+% constant
+K = params.k;
+% Initialize Priors0
+Priors0 = 1/K * ones(1,K);
 
-
-
+% Compute labels and means using K-means
+[labels0, Mu0, ~, ~] =  kmeans(X, K, params.init, params.d_type, ...
+                               params.max_iter_init, false);
+                                    
+% Initialize Sigma0
+for ii = 1:K
+    Sigma0(:,:,ii) = compute_covariance(X(:,labels0==ii), Mu0(:,ii), params.cov_type);
+end
 
 end
 
