@@ -20,16 +20,13 @@ function [  Priors, Mu, Sigma, iter ] = gmmEM(X, params)
 %       o iter      : (1 x 1) number of iterations it took to converge
 %%
 
-% GMM part 1: GMM: 4.0/6
-
 % Initialization
 iter = 0;
-[Priors, Mu, Sigma, labels0] = gmmInit(X, params);
+[Priors, Mu, Sigma, ~] = gmmInit(X, params);
 logl = gmmLogLik(X, Priors, Mu, Sigma);
-threshold = 1e-2;
-
-% while true
-while iter <= params.max_iter
+threshold = 5e-4;
+% optimization
+while true
     % Expectation Step (E-step)
     [Pk_x] = expectation_step(X, Priors, Mu, Sigma, params);
     % Maximization (Update step) Step (M-step)
@@ -38,13 +35,9 @@ while iter <= params.max_iter
     iter = iter + 1;
     last_logl = logl;
     logl = gmmLogLik(X, Priors, Mu, Sigma);
-%     if(iter >= params.max_iter || abs(last_logl - logl) <= threshold)
-%         break;
-%     end
-    if abs(last_logl - logl) <= threshold
+    if(iter >= params.max_iter || abs(last_logl - logl) <= threshold)
         break;
     end
 end
 
 end
-

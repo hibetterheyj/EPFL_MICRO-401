@@ -23,7 +23,7 @@ function [AIC, BIC] =  gmm_metrics(X, Priors, Mu, Sigma, cov_type)
 [N, M] = size(X);
 K = numel(Priors);
 % the likelihood of the model
-L = gmmLogLik(X, Priors, Mu, Sigma);
+logL = gmmLogLik(X, Priors, Mu, Sigma);
 % the total number of model parameters
 switch cov_type
     case "full"
@@ -34,7 +34,7 @@ switch cov_type
         B = K * (1 + N + 1) - 1;
 end
 % result
-AIC = -2 * log(L) + 2 * B;
-BIC = -2 * log(L) + log(M) * B;
+AIC = -2 * logL + 2 * B;
+BIC = -2 * logL + log(M) * B;
 
 end

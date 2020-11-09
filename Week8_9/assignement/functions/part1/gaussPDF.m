@@ -15,12 +15,10 @@ function prob = gaussPDF(X, Mu, Sigma)
 %%
 
 % constant
-% N: dimensions
 N = numel(Mu); 
 % result
-den = 1./(sqrt((2*pi)^N * det(Sigma)));
-prob = cell2mat(cellfun(@(X) den* exp(-0.5 * ((X - Mu)' / (Sigma)) * (X - Mu)), ...
+den = 1 / ( sqrt( (2*pi)^N * det(Sigma) ) );
+prob = cell2mat(cellfun(@(X) den * exp(-0.5 * ((X - Mu)' / (Sigma)) * (X - Mu)), ...
                 num2cell(X,1), 'UniformOutput', false));
-
 
 end

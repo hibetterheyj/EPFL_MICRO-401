@@ -14,7 +14,7 @@ function [ Sigma ] = compute_covariance( X, X_bar, type )
 
 % constant
 [N, M] = size(X);
-
+% result
 switch type
     case 'full'
         X = X - X_bar;
@@ -28,4 +28,3 @@ switch type
 end
 
 end
-

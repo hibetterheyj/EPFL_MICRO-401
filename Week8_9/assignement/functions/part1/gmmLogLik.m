@@ -21,7 +21,6 @@ function [ logl ] = gmmLogLik(X, Priors, Mu, Sigma)
 M = size(X, 2);
 K = numel(Priors);
 Prob = zeros(M, K);
-
 % 1) computing the likelihood of each point
 for ii = 1:K
     Prob(:,ii) = gaussPDF(X, Mu(:,ii), Sigma(:,:,ii));
@@ -32,4 +31,3 @@ Prob_sum = sum(Prob .* Priors, 2);
 logl = sum(log(Prob_sum));
 
 end
-

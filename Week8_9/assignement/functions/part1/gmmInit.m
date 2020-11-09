@@ -24,17 +24,16 @@ function [ Priors0, Mu0, Sigma0, labels0 ] = gmmInit(X, params)
 
 % constant
 K = params.k;
+N = size(X, 1);
+Sigma0 = zeros(N, N, K);
 % Initialize Priors0
 Priors0 = 1/K * ones(1,K);
-
-% Compute labels and means using K-means
+% Compute labels0 (labels) and Mu0 (means) using K-means
 [labels0, Mu0, ~, ~] =  kmeans(X, K, params.init, params.d_type, ...
                                params.max_iter_init, false);
-                                    
-% Initialize Sigma0
+% Compute Sigma0
 for ii = 1:K
     Sigma0(:,:,ii) = compute_covariance(X(:,labels0==ii), Mu0(:,ii), params.cov_type);
 end
 
 end
-
