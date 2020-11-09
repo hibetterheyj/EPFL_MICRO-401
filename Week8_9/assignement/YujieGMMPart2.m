@@ -18,9 +18,9 @@ seed = rng(42);
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 saveFolder = './YujieResult/';
 
-dataset_list = {'1a', '1b'}; % {'1a', '1b', '1c'}
-cov_list = {'full', 'diag', 'iso'};
-repeats_test = 10; % 10
+dataset_list = {'1a','1b'}; % {'1a', '1b', '1c'}
+cov_list = {'full', 'diag','iso'};
+repeats_test = 10;
 
 % dataset_list = {'1a'}; 
 % cov_list = {'full'};
@@ -62,6 +62,7 @@ for ii = 1:length(dataset_list)
         params.d_type = 'L2';
         params.init = 'plus';
         % Evaluate gmm-em to find the optimal k
+        fprintf([dataset '_' params.cov_type ' Start!!!\n']);
         [AIC_curve, BIC_curve] = gmm_eval(X, K_range, repeats, params);
         % Plot Metric Curves
         Yujie_plot_curves(AIC_curve,BIC_curve,params,dataset,saveFolder)
