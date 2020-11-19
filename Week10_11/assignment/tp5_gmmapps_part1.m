@@ -37,7 +37,8 @@ acc =  accuracy(Ytest, Yest);
 figure('Name', 'Classification with GMM')
 ax1 = subplot(1,2,1);
 dotsize = 12;
-scatter(data(:,1), data(:,2), dotsize, data(:,3)); axis equal;
+% scatter(data(:,1), data(:,2), dotsize, data(:,3)); axis equal;
+scatter(data(1,:), data(2,:), dotsize, data(3,:)); axis equal;
 title('Original Data');
 
 % Plot decision boundary

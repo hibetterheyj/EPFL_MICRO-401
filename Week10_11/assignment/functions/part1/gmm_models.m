@@ -19,8 +19,14 @@ function [models] = gmm_models(Xtrain, Ytrain, params)
 %                   |            Covariance matrices  Sigma = {Sigma^1,...,Sigma^K}
 %%
 
+% initialization
+label = unique(Ytrain);
+N_classes = numel(label);
+models = struct('Priors', cell(1,N_classes), 'Mu', cell(1,N_classes), 'Sigma', cell(1,N_classes));
 
-
-
+% model training
+for ii = 1:N_classes
+    [models(ii).Priors, models(ii).Mu, models(ii).Sigma, ~] = gmmEM(Xtrain(:,Ytrain == ii), params);
+end
 
 end

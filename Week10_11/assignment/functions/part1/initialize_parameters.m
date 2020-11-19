@@ -27,11 +27,17 @@ params.max_iter = 500;
 params.d_type = 'L2';
 params.init = 'plus';
 
+% load data
+data = eval(dataset_type)';
 
+% params
+params.valid_ratio = 0.2;
+params.k = 4;
+params.cov_type = 'full'; % {'iso', 'diag', 'full'} 
 
-
-
-
+% validSize: the ratio of samples in the TEST set.
+% valid_ratio: the ratio between train and test dataset
+validSize = 1/(1+params.valid_ratio);
+[Xtrain, Ytrain, Xtest, Ytest] = split_data(data(1:2,:), data(3,:), validSize);
 
 end
-
