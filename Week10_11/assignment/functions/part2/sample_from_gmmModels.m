@@ -16,8 +16,23 @@ function [XNew] = sample_from_gmmModels(models, nbSamplesPerClass, desiredClass)
 %       not nbSamples = nbSamplesPerClass * nbClasses, if yes nbSamples = nbSamplesPerClass
 %%
 
+% init
+N = size(models(1).Mu, 1);
 
-
-
+% calculation
+switch nargin
+    case 2
+        % compute with `desiredClass`
+        N_class = numel(models);
+        nbSamples = nbSamplesPerClass * N_class;
+        XNew = zeros(N, nbSamples);
+        for ii = 1:N_class
+            XNew_c = sample_from_gmm(models(ii), nbSamplesPerClass);
+            XNew(:,nbSamplesPerClass*(ii-1)+1:nbSamplesPerClass*ii) = XNew_c;
+        end
+    case 3
+        % compute w/o `desiredClass`; class 4 is the 4-th class
+        XNew = sample_from_gmm(models(desiredClass+1), nbSamplesPerClass);
+end
 
 end

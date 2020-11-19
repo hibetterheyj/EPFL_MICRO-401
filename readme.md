@@ -45,6 +45,12 @@ This programming class complements courses on machine learning given in the scho
   Assignment 4: GMM
 
   (Due: **November 17, 2020 @ 6pm**)
+  
+- Week10-11 [[link]([link](https://github.com/hibetterheyj/EPFL_MICRO-401/tree/master/Week10_11))]
+
+  Assignment 5: GMM Applications
+
+  (Due: **December 1, 2020 @ 6pm**)
 
 Weekly solution and codes are available in`.m` format in `Upload/` folder. Best wishes!
 

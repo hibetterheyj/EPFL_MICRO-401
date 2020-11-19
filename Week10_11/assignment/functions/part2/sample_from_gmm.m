@@ -14,9 +14,17 @@ function [XNew] = sample_from_gmm(gmm, nbSamples)
 %       o XNew  :  (N x nbSamples), Newly generated set of samples.
 %%
 
+% init
+[N, K] = size(gmm.Mu);
+N = size(gmm.Mu, 1);
+XNew = zeros(N, nbSamples);
 
-
-
+% random generation
+idx = randsrc(1,nbSamples,[1:K; gmm.Priors]);
+for ii = 1:nbSamples
+    R = mvnrnd((gmm.Mu)',gmm.Sigma);
+    XNew(:,ii) = (R(idx(ii), :));
+end
 
 end
 
