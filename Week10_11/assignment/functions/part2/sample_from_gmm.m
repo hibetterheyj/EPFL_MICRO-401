@@ -18,7 +18,6 @@ function [XNew] = sample_from_gmm(gmm, nbSamples)
 [N, K] = size(gmm.Mu);
 N = size(gmm.Mu, 1);
 XNew = zeros(N, nbSamples);
-
 % random generation
 idx = randsrc(1,nbSamples,[1:K; gmm.Priors]);
 for ii = 1:nbSamples
@@ -27,4 +26,3 @@ for ii = 1:nbSamples
 end
 
 end
-

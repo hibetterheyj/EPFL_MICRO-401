@@ -24,7 +24,6 @@ N_classes = numel(labels);
 M_test = size(Xtest, 2);
 K = numel(models(1).Priors);
 minus_log_lik = zeros(N_classes, M_test);
-
 % ML Discriminant Rule to estimate labels
 for ii = 1:N_classes
     Priors = models(ii).Priors;

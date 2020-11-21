@@ -18,7 +18,6 @@ function [XNew] = sample_from_gmmModels(models, nbSamplesPerClass, desiredClass)
 
 % init
 N = size(models(1).Mu, 1);
-
 % calculation
 switch nargin
     case 2
