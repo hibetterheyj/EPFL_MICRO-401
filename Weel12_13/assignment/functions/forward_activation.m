@@ -22,6 +22,14 @@ switch Sigma
     case "leakyrelu"
         k = 0.01;
         A = max(k*Z, Z);
+    case "softmax"
+        % different delta value for each of the M samples
+        s = ones(1, ndims(Z)); s(1) = size(Z, 1);
+        % delta = max(Z, [], 1);
+        expz = exp(Z-repmat(max(Z), s));
+        A = expz ./ repmat(sum(expz, 1), s);
 end
 
 end
+
+% ref: https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/

@@ -12,6 +12,12 @@ M = size(Y,2);
 switch type
     case "LogLoss"
         E = (sum(sum(-log(Y(Yd==1)))) + sum(sum(-log(1-Y(Yd==0))))) / M;
+    case "CrossEntropy"
+        E = 0; % M: number of datapoints
+        for ii = 1:M
+            E = E - sum(Yd(:,ii) .* log(Y(:,ii)));
+        end
+        E = E/M;
 end
 
 end
