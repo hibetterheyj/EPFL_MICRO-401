@@ -8,9 +8,10 @@ function [E] = cost_function(Y, Yd, type)
 %   outputs:
 %       o E (scalar) The error
 
-
-
-
-
+M = size(Y,2);
+switch type
+    case "LogLoss"
+        E = (sum(sum(-log(Y(Yd==1)))) + sum(sum(-log(1-Y(Yd==0))))) / M;
 end
 
+end

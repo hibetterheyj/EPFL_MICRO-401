@@ -9,12 +9,24 @@ function [dZ] = backward_activation(Z, Sigma)
 %   outputs:
 %       o dZ (NXM) derivative of the activation function
 
-
-
-
-
-
-
+% init
+[N, M] = size(Z);
+% activation
+switch Sigma
+    case "sigmoid"
+        sigma = ones(N, M) ./ (1 + exp(-Z));
+        dZ = sigma.*(1-sigma);
+    case "tanh"
+        tanh = (exp(Z) - exp(-Z)) ./ (exp(Z) + exp(-Z));
+        dZ = 1 - tanh.^2;
+    case "relu"
+        dZ = ones(N,M);
+        dZ(Z<0) = 0;
+    case "leakyrelu"
+        dZ = ones(N,M);
+        dZ(Z<0) = 0.01;
+end
 
 end
 
+% ref: https://medium.com/@yashgarg1232/derivative-of-neural-activation-function-64e9e825b67

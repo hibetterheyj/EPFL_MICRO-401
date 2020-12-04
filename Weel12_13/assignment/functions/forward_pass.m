@@ -14,9 +14,17 @@ function [Y, A, Z] = forward_pass(X, W, W0, Sigmas)
 %       at each layer. Also contain the input layer A0
 %       o Z {Lx1} cell array containing the Z values at each layer
 
-
-
-
+% init
+L = numel(W);
+A = cell(L+1,1);
+Z = cell(L,1);
+% feedforward
+A{1} = X; % refer to the input layer X as A0 
+for ii = 1:L
+    Z{ii} = W{ii} * A{ii} + W0{ii};
+    [A{ii+1}] = forward_activation(Z{ii}, Sigmas{ii});
+end
+Y = A{L+1};
 
 end
 

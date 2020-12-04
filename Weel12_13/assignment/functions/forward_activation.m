@@ -9,9 +9,19 @@ function [A] = forward_activation(Z, Sigma)
 %   outputs:
 %       o A (NXM) value of the activation function
 
-
-
-
-
+% init
+[N, M] = size(Z);
+% activation
+switch Sigma
+    case "sigmoid"
+        A = ones(N, M) ./ (1 + exp(-Z));
+    case "tanh"
+        A = (exp(Z) - exp(-Z)) ./ (exp(Z) + exp(-Z));
+    case "relu"
+        A = max(0, Z);
+    case "leakyrelu"
+        k = 0.01;
+        A = max(k*Z, Z);
 end
 
+end

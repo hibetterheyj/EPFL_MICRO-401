@@ -10,9 +10,12 @@ function [dZ] = cost_derivative(Y, Yd, typeCost, typeLayer)
 %   outputs:
 %       o dZ (PxM) The derivative dE/dZL
 
-
-
-
+% compute dE_dAL
+switch typeCost
+    case "LogLoss"
+        dE_dAL = -Yd/Y+(1-Yd)/(1-Y);
+end
+dAL_dZL = backward_activation(Y, typeLayer);
+dZ = dE_dAL .* dAL_dZL;
 
 end
-
