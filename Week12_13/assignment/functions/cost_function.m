@@ -15,7 +15,8 @@ switch type
     case "CrossEntropy"
         E = 0; % M: number of datapoints
         for ii = 1:M
-            E = E - sum(Yd(:,ii) .* log(Y(:,ii)));
+            %E = E - sum(Yd(:,ii) .* log(Y(:,ii)));
+            E = E - Yd(:,ii)' * log(Y(:,ii));
         end
         E = E/M;
 end

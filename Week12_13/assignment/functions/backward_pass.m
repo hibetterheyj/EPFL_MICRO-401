@@ -23,11 +23,9 @@ dZ = cell(L,1);
 dW = cell(L,1);
 dW0 = cell(L,1);
 % calculation
-% dE_dZL the derivative of the cost function
-dZ{L} = dE;
-% dAL_dZL
 for ii = L:-1:1
     if ii == L
+        % dAL_dZL
         dZ{ii} = dE;
     else
         % dAl_dZl
