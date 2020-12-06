@@ -8,14 +8,15 @@ function [E] = cost_function(Y, Yd, type)
 %   outputs:
 %       o E (scalar) The error
 
-M = size(Y,2);
+% init
+M = size(Y,2); % number of datapoints
+% calculation
 switch type
     case "LogLoss"
         E = (sum(sum(-log(Y(Yd==1)))) + sum(sum(-log(1-Y(Yd==0))))) / M;
     case "CrossEntropy"
-        E = 0; % M: number of datapoints
+        E = 0;
         for ii = 1:M
-            %E = E - sum(Yd(:,ii) .* log(Y(:,ii)));
             E = E - Yd(:,ii)' * log(Y(:,ii));
         end
         E = E/M;

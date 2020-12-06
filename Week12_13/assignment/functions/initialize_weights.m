@@ -10,12 +10,11 @@ function [W, W0] = initialize_weights(LayerSizes, type)
 %       o W {Lx1} cell array containing the weight matrices for all the layers 
 %       o W0 {Lx1} cell array containing the bias matrices for all the layers
 
-% Useful function randn, zeros and cell & {} for cell arrays
-
+% init
 L = numel(LayerSizes)-1;
 W = cell(L,1);   % weights S^l ¡Á S^{l?1}
 W0 = cell(L,1); % bias    S^l ¡Á 1
-
+% generate initial values for W and W0
 switch type
     case "random" 
         for ii = 1:L
@@ -30,4 +29,3 @@ switch type
 end
 
 end
-

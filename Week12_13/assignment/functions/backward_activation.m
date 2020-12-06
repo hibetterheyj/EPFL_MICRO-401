@@ -25,13 +25,6 @@ switch Sigma
     case "leakyrelu"
         dZ = ones(N,M);
         dZ(Z<0) = 0.01;
-    case "softmax"
-        s = ones(1, ndims(Z)); s(1) = size(Z, 1);
-        expz = exp(Z-repmat(max(Z), s));
-        softmax = expz ./ repmat(sum(expz, 1), s);
-        dZ = softmax.*(1-softmax);
 end
 
 end
-
-% ref: https://medium.com/@yashgarg1232/derivative-of-neural-activation-function-64e9e825b67

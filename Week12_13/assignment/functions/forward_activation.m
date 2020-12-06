@@ -31,5 +31,3 @@ switch Sigma
 end
 
 end
-
-% ref: https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/
